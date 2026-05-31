@@ -123,7 +123,7 @@ fn main() {
 
     println!(
         "=======  caluculated  =======
-Total mass: {}
+Total Mass[kg]: {}
 Mass Ratio: {}",
         mass_total, mass_ratio
     );

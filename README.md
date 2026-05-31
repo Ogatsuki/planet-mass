@@ -1,55 +1,54 @@
 # planet-mass
 
-Rust の勉強用に作成した、惑星の質量をシミュレーションする物理シミュレーションです。  
-コード内で指定したいくつかのパラメータをもとに、惑星を薄い球殻の集まりとして近似し、全体の質量を求めます。
+This is a physics simulation created for studying Rust that calculates the mass of a planet.
+Based on several parameters specified in the code, it approximates a planet as a collection of thin spherical shells and calculates its total mass.
 
-## 概要
+## Overview
 
-このプログラムでは、惑星の内部密度が中心から外側へ向かって線形に変化すると仮定しています。  
-半径方向に一定のステップ幅で分割し、それぞれの球殻の体積と密度から質量を積み上げて、最終的な総質量を計算します。
+This program assumes that the internal density of a planet changes linearly from the center toward the outside.
+It divides the planet along the radial direction using a fixed step size, then accumulates the mass of each spherical shell from its volume and density to calculate the final total mass.
 
-あわせて、計算結果を地球質量との比 (`Mass Ratio`) として表示します。
+It also displays the result as a ratio to Earth's mass (`Mass Ratio`).
 
-## 入力パラメータ
+## Input Parameters
 
-実行時に以下の値を入力できます。何も入力しない、または不正な値を入力した場合はデフォルト値が使われます。
+You can enter the following values when running the program. If you leave an entry blank or enter an invalid value, the default value will be used.
 
-| 項目 | 内容 | デフォルト値 |
+| Item | Description | Default Value |
 | --- | --- | --- |
-| `rho_o` | 中心密度 `The core density[g/cm^3]` | `4.5` |
-| `rho_outer` | 外層密度 `The outer density[g/cm^3]` | `2.0` |
-| `r` | 惑星半径 `The radius[km]` | `6340.0` |
-| `step` | 計算ステップ幅 `The step size[km]` | `1.0` |
+| `rho_o` | Core density `The core density[g/cm^3]` | `4.5` |
+| `rho_outer` | Outer-layer density `The outer density[g/cm^3]` | `2.0` |
+| `r` | Planet radius `The radius[km]` | `6340.0` |
+| `step` | Calculation step size `The step size[km]` | `1.0` |
 
-## 実行方法
+## How to Run
 
 ```bash
 cargo run
 ```
 
-実行すると、順番にパラメータの入力を求められます。
+When you run it, you will be prompted to enter the parameters one by one.
 
-## 出力内容
+## Output
 
-- `Total mass`: シミュレーションで計算された惑星の総質量
-- `Mass Ratio`: 地球質量 (`5.9742e24`) に対する比
+- `Total mass`: The total mass of the planet calculated by the simulation
+- `Mass Ratio`: The ratio relative to Earth's mass (`5.9742e24`)
 
-## 計算の考え方
+## Calculation Method
 
-1. 惑星の半径を `step` ごとに分割する
-2. 各半径位置で密度を線形補間する
-3. その区間の球殻体積を求める
-4. 密度 × 体積で区間ごとの質量を計算する
-5. すべての区間の質量を合計する
+1. Divide the planet's radius into intervals of `step`
+2. Linearly interpolate the density at each radial position
+3. Calculate the spherical shell volume for each interval
+4. Calculate the mass of each interval using density × volume
+5. Sum the masses of all intervals
 
-## 注意
+## Notes
 
-- 現在はシンプルな学習用実装です
-- 密度分布は線形変化を前提にしています
-- 入力値や単位の扱いは、今後の改善余地があります
+- This is currently a simple implementation for learning purposes
+- The density distribution assumes a linear change
+- There is still room for improvement in how input values and units are handled
 
-## 使用技術
+## Technologies Used
 
 - Rust
-- 標準入出力による対話型 CLI
-
+- Interactive CLI using standard input and output
